@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marriage Proposal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #ffe6f2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 52px;
+            height: 80px;
+            border-radius: 50px 50px 0 0;
+            background-color: #ff3366;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .heart:hover {
+            transform: scale(1.1);
+        }
+
+        .proposal {
+            display: none;
+            text-align: center;
+        }
+
+        .proposal.show {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        .ring {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 24px;
+            color: #ff3366;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart" onclick="showProposal()"></div>
+        <div class="proposal">
+            <div class="ring">💍</div>
+            <div class="question">Will you marry me?</div>
+            <div class="buttons">
+                <button class="yes-btn" onclick="goToYesPage()">Yes!</button>
+                <button class="no-btn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showProposal() {
+            document.querySelector('.heart').style.display = 'none';
+            document.querySelector('.proposal').classList.add('show');
+        }
+
+        function goToYesPage() {
+            window.location.href = "yes.html"; // Redirects to yes.html
+        }
+
+        function moveButton() {
+            const noBtn = document.querySelector('.no-btn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
